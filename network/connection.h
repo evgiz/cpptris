@@ -1,0 +1,25 @@
+//
+// Created by Sigve Røkenes on 27/10/2018.
+//
+
+#ifndef CONNECTION_H
+#define CONNECTION_H
+
+#include "server.h"
+#include <SFML/Network.hpp>
+
+class Connection {
+
+private:
+    Server *server;
+    sf::TcpSocket* socket;
+    std::string username;
+    int id;
+public:
+    Connection(int id, Server* server, sf::TcpSocket* socket);
+    void send(sf::Packet packet);
+    void run();
+    std::string getName();
+};
+
+#endif CONNECTION_H
