@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "lobby.cpp"
+#include "keyboard.h"
 
 using namespace sf;
 using namespace std;
@@ -41,6 +42,8 @@ int main() {
                 }
             }
         }
+
+        KeyboardManager::keyboardUpdate(focus);
 
         delta = clock.getElapsedTime().asMilliseconds() / 1000.0f;
         lobby.update(min(delta, 1.0f/30.0f));

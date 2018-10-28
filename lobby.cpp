@@ -11,6 +11,7 @@
 #include "network/server.h"
 #include "network/client.h"
 #include "game.cpp"
+#include "keyboard.h"
 
 using namespace sf;
 using namespace std;
@@ -41,6 +42,7 @@ private:
     Client* client;
 
     Game *game;
+
     bool gameStarted = false;
 
     Typing typing = Nothing;
@@ -56,11 +58,6 @@ private:
             };
 
     int selected = 0;
-
-    bool downReleased = false;
-    bool upReleased = false;
-    bool backspaceReleased = false;
-    bool enterReleased = false;
 
 public:
 
@@ -78,27 +75,26 @@ public:
 
         if(gameStarted){
             game->update(delta);
+
+            if(client!=NULL && client->isGameFinished()){
+                gameStarted = false;
+            }
+
             return;
         }
 
         if(state == None) {
-            if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-                if (downReleased) {
-                    downReleased = false;
+            if ( KeyboardManager::keyDown(Keyboard::Key::Down)) {
                     selected++;
                     if (selected > 3)selected = 3;
-                }
-            } else downReleased = true;
+            }
 
-            if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-                if (upReleased) {
-                    upReleased = false;
+            if ( KeyboardManager::keyDown(Keyboard::Key::Up)) {
                     selected--;
                     if (selected < 0)selected = 0;
-                }
-            } else upReleased = true;
+            }
 
-            if (Keyboard::isKeyPressed(Keyboard::Key::Enter) || Keyboard::isKeyPressed(Keyboard::Key::Space)) {
+            if ( KeyboardManager::keyDown(Keyboard::Key::Enter) ||  KeyboardManager::keyDown(Keyboard::Key::Space)) {
                 switch (selected) {
                     case 0:
                         state = Singleplayer;
@@ -108,6 +104,7 @@ public:
                     case 1:
                         state = Join;
                         typing = Address;
+                        typeText = "127.0.0.1";
                         break;
                     case 2:
                         server = new Server();
@@ -120,35 +117,41 @@ public:
         }
 
         if(typing != Nothing){
-            if(Keyboard::isKeyPressed(Keyboard::Key::BackSpace)){
-                if(backspaceReleased){
-                    backspaceReleased = false;
-                    typeText = typeText.substr(0, typeText.length()-1);
-                }
-            }else backspaceReleased = true;
 
-            if(Keyboard::isKeyPressed(Keyboard::Key::Enter)){
-                if(enterReleased) {
-                    enterReleased = false;
-                    if (typing == Address) {
-                        typing = Name;
-                        address = typeText;
-                        typeText = "";
-                    } else typing = Nothing;
+            if( KeyboardManager::keyDown(Keyboard::Key::BackSpace)){
+                typeText = typeText.substr(0, typeText.length()-1);
+            }
 
-                    if (typing == Nothing)
-                        client = new Client(typeText, address);
-                }
-            }else enterReleased = true;
+            if( KeyboardManager::keyDown(Keyboard::Key::Enter) && typeText.compare("")!=0){
+                if (typing == Address) {
+                    typing = Name;
+                    address = typeText;
+                    typeText = "";
+                } else typing = Nothing;
+
+                if (typing == Nothing)
+                    client = new Client(typeText, address);
+            }
         }
 
 
-        if(state == Host && typing == Nothing){
-            if(Keyboard::isKeyPressed(Keyboard::Key::P)){
-                server->startGame();
-                game = new Game(client);
-                gameStarted = true;
+        if(state == Host){
+            if(typing == Nothing) {
+                if (server->isRunning() && KeyboardManager::keyDown(Keyboard::Key::Space)) {
+                    server->startGame();
+                    game = new Game(client);
+                    gameStarted = true;
+                }
             }
+
+            if(!server->isRunning()) {
+                typing = Nothing;
+                if (KeyboardManager::keyDown(Keyboard::Key::Escape)) {
+                    state = None;
+                    typeText = "";
+                }
+            }
+
         }
 
         if(state == Join && typing == Nothing ){
@@ -156,7 +159,7 @@ public:
                 game = new Game(client);
                 gameStarted = true;
             }else if(!client->isConnected()){
-                if(Keyboard::isKeyPressed(Keyboard::Key::Escape)){
+                if( KeyboardManager::keyDown(Keyboard::Key::Escape)){
                     state = None;
                     typeText = "";
                 }
@@ -233,8 +236,21 @@ public:
             lobbyText.setCharacterSize(48);
             lobbyText.setPosition(70, 620);
             lobbyText.setColor(Color(255,0,0));
-            lobbyText.setString("Hosting server.");
-            window.draw(lobbyText);
+
+            if(server->isRunning()) {
+                lobbyText.setString("Hosting server.");
+                window.draw(lobbyText);
+            }else {
+                lobbyText.setString("Failed to start server.");
+                window.draw(lobbyText);
+
+                lobbyText.setPosition(70, 820);
+                lobbyText.setColor(Color(255,255,0));
+                lobbyText.setString("Press escape to exit");
+                window.draw(lobbyText);
+
+                return;
+            }
 
             lobbyText.setColor(Color(255,255,255));
             lobbyText.setCharacterSize(48);
@@ -254,9 +270,10 @@ public:
                 lobbyText.setColor(Color(0, 255, 0));
                 lobbyText.setCharacterSize(48);
                 lobbyText.setPosition(70, 1250);
-                lobbyText.setString("P to play");
+                lobbyText.setString("Press Space to start");
                 window.draw(lobbyText);
             }
+
         }
 
         if(state == Join && typing == Nothing){
@@ -292,11 +309,16 @@ public:
                 window.draw(lobbyText);
             }
 
+        }
 
-
+        if(client!=NULL && client->isGameFinished()) {
+            lobbyText.setColor(Color(0, 255, 255));
+            lobbyText.setCharacterSize(48);
+            lobbyText.setPosition(70, 1150);
+            lobbyText.setString(client->getName(client->getGameWinner()) + " won the round!");
+            window.draw(lobbyText);
         }
     }
-
 
     void drawUserWorlds(RenderWindow& window){
         int tile = 24;
@@ -307,16 +329,19 @@ public:
         int usr = -1;
 
         lobbyText.setColor(Color(255,255,255));
-        lobbyText.setCharacterSize(24);
+        lobbyText.setCharacterSize(28);
 
         for(int i=0;i<3;i++){
             int posx = startx + border;
-            int posy = starty + border + i*tile*20 + i*75;
+            int posy = starty + border + i*tile*20 + i*66;
 
             usr++;
             if(client->getId() == usr) {
                 usr++;
             }
+
+            if(client->getName(usr).compare("") == 0)
+                continue;
 
             RectangleShape outline(Vector2f(tile*10 + border*2, tile*20 + border*2));
             outline.setFillColor(Color(50,50,50));
@@ -341,6 +366,32 @@ public:
                 }
             }
 
+            //Game over
+            if(client->getGameOver(usr)){
+                RectangleShape bg(Vector2f(tile*10, tile*3));
+                bg.setFillColor(Color::Red);
+                bg.setPosition(posx, posy + tile*8);
+                window.draw(bg);
+                lobbyText.setString("Game Over");
+                lobbyText.setPosition(posx + tile*5 - 90, posy + tile*9 - 10);
+                window.draw(lobbyText);
+            }else {
+
+                // Draw piece
+                int piece_x = client->getPiecePosition(usr)[0];
+                int piece_y = client->getPiecePosition(usr)[1];
+                int *piece = client->getPiece(usr);
+
+                for(int p=0;p<4*4;p++) {
+                    if(piece[p]){
+                        block.setColor(PIECE_COLOR[piece[p]-1]);
+                        block.setPosition(posx + (p%4 + piece_x) * tile, posy + (p/4 + piece_y)*tile);
+                        window.draw(block);
+                    }
+                }
+            }
+
+            //Name
             lobbyText.setString(client->getName(usr));
             lobbyText.setPosition(TILE_SIZE*10 + 100, posy-45);
             window.draw(lobbyText);

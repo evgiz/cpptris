@@ -3,7 +3,7 @@ project(SFMLDemo)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11  -I/usr/local/include")
 
-set(SOURCE_FILES main.cpp piece.cpp common.cpp lobby.cpp game.cpp network/client.cpp network/data.cpp network/connection.cpp network/server.cpp network/server.h network/connection.h network/client.h)
+set(SOURCE_FILES main.cpp piece.cpp common.cpp lobby.cpp game.cpp network/client.cpp network/data.cpp network/connection.cpp network/server.cpp network/server.h network/connection.h network/client.h keyboard.cpp keyboard.h piece.h)
 add_executable(SFMLDemo ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

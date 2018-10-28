@@ -15,6 +15,7 @@ private:
     sf::TcpSocket* socket;
     std::string username;
     int id;
+    bool running;
 public:
     Connection(int id, Server* server, sf::TcpSocket* socket);
     void send(sf::Packet packet);

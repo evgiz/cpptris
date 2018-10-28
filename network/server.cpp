@@ -16,6 +16,10 @@ using namespace std;
 using namespace sf;
 
 Connection *connections[4];
+
+bool gameOver[4];
+int gameOverCount = 0;
+
 int num_connections = 0;
 bool running = true;
 TcpListener tcpListener;
@@ -48,6 +52,31 @@ void Server::sendLobbyData() {
 
 }
 
+void Server::setGameOver(int id){
+
+    gameOver[id] = true;
+    gameOverCount ++;
+
+    if(gameOverCount >= num_connections-1){
+
+        int winner = 0;
+        for(int i=0;i<num_connections;i++){
+            if(!gameOver[i])
+                winner = i;
+        }
+
+        gameOverCount = 0;
+        for(int i=0;i<4;i++)
+            gameOver[id] = false;
+
+        Packet finPack;
+        finPack << (int)PACKET_TYPE_FINISHGAME;
+        finPack << winner;
+        sendAll(finPack);
+    }
+
+}
+
 void Server::startGame(){
     Packet pack;
     pack << (int)PACKET_TYPE_START;
@@ -70,8 +99,11 @@ void Server::sendAllExcept(int id, Packet packet) {
 
 void Server::run() {
 
+    running = true;
+
     if (tcpListener.listen((unsigned short) 31621) != Socket::Done) {
         cout << "Failed to start network." << endl;
+        running = false;
         return;
     }
     cout << "Server listening on port 424842" << endl;
@@ -100,4 +132,7 @@ void Server::run() {
 
 }
 
+bool Server::isRunning(){
+    return running;
+}
 

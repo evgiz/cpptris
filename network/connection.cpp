@@ -27,6 +27,7 @@ Connection::Connection(int id, Server* server, TcpSocket* socket){
 void Connection::send(Packet packet){
     if(socket->send(packet) != sf::Socket::Done){
         cout << "Server failed to send packet to " << username << endl;
+        running = false;
     }
 }
 
@@ -49,9 +50,7 @@ void Connection::run() {
 
     server->sendLobbyData();
 
-    bool a = true;
-
-    while(a){
+    while(running){
         Packet packet;
         if(socket->receive(packet)!=Socket::Done){
             cout << "Failed to receive pack from client " << endl;
@@ -68,26 +67,48 @@ void Connection::run() {
                 packet >> world[i];
             }
 
-            cout << "Server got world: "<< endl;
-            for(int y=0;y<20;y++){
-                for(int x=0;x<10;x++){
-                    if(world[x + y*10])
-                        cout << "X";
-                    else cout << "O";
-                }
-                cout << endl;
-            }
-            cout << endl;
-
             Packet wPack;
 
             wPack << (int)PACKET_TYPE_WORLD;
-            wPack << (int)id;
+            wPack << id;
 
             for(int i=0;i<10*20;i++)
                 wPack << world[i];
 
-            server->sendAll(wPack);
+            server->sendAllExcept(id, wPack);
+
+        }else if(type == PACKET_TYPE_PIECE){
+
+            float x,y;
+
+            packet >> x;
+            packet >> y;
+
+            int piece[4*4];
+            for(int i=0;i<4*4;i++) {
+                packet >> piece[i];
+            }
+
+            Packet pPack;
+            pPack << (int)PACKET_TYPE_PIECE;
+            pPack << id << x << y;
+
+            for(int i=0;i<4*4;i++)
+                pPack << piece[i];
+
+            server->sendAllExcept(id, pPack);
+
+        }else if(type == PACKET_TYPE_BLOCK){
+            Packet scPack;
+            scPack << (int)PACKET_TYPE_BLOCK;
+            scPack << id;
+            server->sendAllExcept(id, scPack);
+        }else if(type == PACKET_TYPE_GAMEOVER){
+            Packet goPack;
+            goPack << (int)PACKET_TYPE_GAMEOVER;
+            goPack << id;
+            server->sendAllExcept(id, goPack);
+            server->setGameOver(id);
         }
 
     }

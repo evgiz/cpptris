@@ -17,6 +17,8 @@ public:
     void sendAllExcept(int id, sf::Packet packet);
     void run();
     void startGame();
+    void setGameOver(int id);
+    bool isRunning();
 };
 
 #endif SERVER_H
