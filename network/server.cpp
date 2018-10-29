@@ -5,7 +5,6 @@
 #include <string>
 
 #include "connection.h"
-#include "data.cpp"
 #include "server.h"
 #include "../common.cpp"
 

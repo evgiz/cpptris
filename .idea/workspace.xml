@@ -11,10 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="739bdc0b-670a-40ef-9b6b-fbbbde9ef5a7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/network/client.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="739bdc0b-670a-40ef-9b6b-fbbbde9ef5a7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +35,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="42047" />
+          <entry key="cpp" value="42048" />
           <entry key="h" value="1642" />
           <entry key="txt" value="338" />
         </counts>
@@ -46,7 +43,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="314" />
-          <entry key="ObjectiveC" value="43689" />
+          <entry key="ObjectiveC" value="43690" />
           <entry key="PLAIN_TEXT" value="24" />
         </counts>
       </usages-collector>
@@ -78,13 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/network/server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#50#69#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -149,11 +144,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/network/client.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="225">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#1#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,12 +208,12 @@
         <option value="$PROJECT_DIR$/keyboard.cpp" />
         <option value="$PROJECT_DIR$/game.cpp" />
         <option value="$PROJECT_DIR$/common.cpp" />
-        <option value="$PROJECT_DIR$/network/server.cpp" />
         <option value="$PROJECT_DIR$/network/connection.cpp" />
         <option value="$PROJECT_DIR$/keyboard.h" />
         <option value="$PROJECT_DIR$/piece.h" />
         <option value="$PROJECT_DIR$/LICENSE.txt" />
         <option value="$PROJECT_DIR$/network/client.cpp" />
+        <option value="$PROJECT_DIR$/network/server.cpp" />
       </list>
     </option>
   </component>
@@ -323,12 +321,12 @@
       <workItem from="1540733875760" duration="2634000" />
       <workItem from="1540743359673" duration="2754000" />
       <workItem from="1540746186359" duration="4000" />
-      <workItem from="1540746255702" duration="12466000" />
+      <workItem from="1540746255702" duration="12500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78576000" />
+    <option name="totallyTimeSpent" value="78610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,15 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network/server.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#50#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/network/connection.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -600,8 +589,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/network/client.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#1#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
