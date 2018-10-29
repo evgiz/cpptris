@@ -13,18 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="739bdc0b-670a-40ef-9b6b-fbbbde9ef5a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/common.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyboard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/keyboard.h" beforeDir="false" afterPath="$PROJECT_DIR$/keyboard.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lobby.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lobby.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/network/client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/network/client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/connection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/network/connection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/data.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/network/server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/network/server.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piece.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/piece.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piece.h" beforeDir="false" afterPath="$PROJECT_DIR$/piece.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,15 +38,16 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="42046" />
+          <entry key="cpp" value="42047" />
           <entry key="h" value="1642" />
-          <entry key="txt" value="314" />
+          <entry key="txt" value="338" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="314" />
-          <entry key="ObjectiveC" value="43688" />
+          <entry key="ObjectiveC" value="43689" />
+          <entry key="PLAIN_TEXT" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -71,7 +61,7 @@
           <entry key="hpp" value="10" />
           <entry key="png" value="1" />
           <entry key="string" value="1" />
-          <entry key="txt" value="3" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -80,7 +70,7 @@
           <entry key="Image" value="1" />
           <entry key="Makefile" value="1" />
           <entry key="ObjectiveC" value="80" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -129,11 +119,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/piece.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="548">
               <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -150,9 +149,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/network/client.cpp">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -162,17 +165,6 @@
               <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
               <folding>
                 <element signature="e#85#102#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#50#69#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -220,9 +212,10 @@
         <option value="$PROJECT_DIR$/common.cpp" />
         <option value="$PROJECT_DIR$/network/server.cpp" />
         <option value="$PROJECT_DIR$/network/connection.cpp" />
-        <option value="$PROJECT_DIR$/network/client.cpp" />
         <option value="$PROJECT_DIR$/keyboard.h" />
         <option value="$PROJECT_DIR$/piece.h" />
+        <option value="$PROJECT_DIR$/LICENSE.txt" />
+        <option value="$PROJECT_DIR$/network/client.cpp" />
       </list>
     </option>
   </component>
@@ -249,11 +242,6 @@
             <path>
               <item name="cpptris" type="b2602c69:ProjectViewProjectNode" />
               <item name="Tetris" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cpptris" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tetris" type="462c0819:PsiDirectoryNode" />
-              <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -335,12 +323,12 @@
       <workItem from="1540733875760" duration="2634000" />
       <workItem from="1540743359673" duration="2754000" />
       <workItem from="1540746186359" duration="4000" />
-      <workItem from="1540746255702" duration="12152000" />
+      <workItem from="1540746255702" duration="12466000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78262000" />
+    <option name="totallyTimeSpent" value="78576000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -355,18 +343,18 @@
     <frame x="-2" y="24" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13186814" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13186814" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24812834" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24812834" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49874687" weight="0.3144385" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.49874687" visible="true" weight="0.3144385" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5012531" side_tool="true" weight="0.3144385" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -567,9 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network/client.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/network/client.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-322" />
@@ -603,6 +588,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="548">
           <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network/client.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

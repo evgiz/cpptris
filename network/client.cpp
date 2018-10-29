@@ -4,7 +4,6 @@
 #include <thread>
 #include <SFML/Network.hpp>
 
-#include "data.cpp"
 #include "client.h"
 #include "../common.cpp"
 
