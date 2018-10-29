@@ -2,7 +2,7 @@
 
 Multiplayer/networked Tetris clone written in C++ using SFML
 
-![ScreenShot](assets/screenshot.png?raw=true)
+<img src="assets/screenshot.png" align="left" width="200px">
 
 ## Features
 
