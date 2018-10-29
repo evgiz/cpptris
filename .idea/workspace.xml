@@ -11,7 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="739bdc0b-670a-40ef-9b6b-fbbbde9ef5a7" name="Default Changelist" comment="" />
+    <list default="true" id="739bdc0b-670a-40ef-9b6b-fbbbde9ef5a7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/screenshot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +40,7 @@
         <counts>
           <entry key="cpp" value="42048" />
           <entry key="h" value="1642" />
+          <entry key="md" value="18" />
           <entry key="txt" value="338" />
         </counts>
       </usages-collector>
@@ -44,7 +48,7 @@
         <counts>
           <entry key="CMakeLists.txt" value="314" />
           <entry key="ObjectiveC" value="43690" />
-          <entry key="PLAIN_TEXT" value="24" />
+          <entry key="PLAIN_TEXT" value="42" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -56,6 +60,7 @@
           <entry key="cpp" value="45" />
           <entry key="h" value="24" />
           <entry key="hpp" value="10" />
+          <entry key="md" value="1" />
           <entry key="png" value="1" />
           <entry key="string" value="1" />
           <entry key="txt" value="4" />
@@ -67,7 +72,7 @@
           <entry key="Image" value="1" />
           <entry key="Makefile" value="1" />
           <entry key="ObjectiveC" value="80" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="3" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -75,11 +80,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/network/server.cpp">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="600">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="e#50#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -130,11 +147,6 @@
               <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common.cpp">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -214,6 +226,7 @@
         <option value="$PROJECT_DIR$/LICENSE.txt" />
         <option value="$PROJECT_DIR$/network/client.cpp" />
         <option value="$PROJECT_DIR$/network/server.cpp" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -256,6 +269,9 @@
     <property name="settings.editor.selected.configurable" value="language.cpp.clangd" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cmake_modules" />
@@ -321,12 +337,12 @@
       <workItem from="1540733875760" duration="2634000" />
       <workItem from="1540743359673" duration="2754000" />
       <workItem from="1540746186359" duration="4000" />
-      <workItem from="1540746255702" duration="12500000" />
+      <workItem from="1540746255702" duration="12736000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78610000" />
+    <option name="totallyTimeSpent" value="78846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -341,18 +357,18 @@
     <frame x="-2" y="24" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13186814" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13186814" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24812834" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24812834" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.49874687" visible="true" weight="0.3144385" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49874687" weight="0.3144385" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5012531" side_tool="true" weight="0.3144385" />
       <window_info anchor="bottom" id="Version Control" order="11" />
@@ -599,8 +615,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/network/server.cpp">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#50#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

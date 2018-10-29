@@ -2,6 +2,8 @@
 
 Multiplayer/networked Tetris clone written in C++ using SFML
 
+![ScreenShot](assets/screenshot.png?raw=true)
+
 ## Features
 
 1. Classic tetris gameplay
