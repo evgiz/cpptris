@@ -47,6 +47,7 @@ void Client::connect(){
         Packet dPack;
         if (socket.receive(dPack) != sf::Socket::Done) {
             cout << "Server couldnt get pack from client " << endl;
+            connected = false;
             return;
         }
 
@@ -71,6 +72,7 @@ void Client::connect(){
                 dPack >> world[i];
             }
 
+            cout << "Client got world from " << id << endl;
             memcpy(userWorlds[id], world, sizeof(world));
 
         }else if(type == PACKET_TYPE_PIECE) {
@@ -147,6 +149,7 @@ Client::Client(string name, string addr){
 }
 
 void Client::resetState(){
+    cout << "Client reset state " << endl;
     // Reset users
     for(int i=0;i<4;i++) {
         gameOver[i] = false;
@@ -164,6 +167,7 @@ void Client::updateState(int (&world)[10][20]){
     for(int i=0;i<10*20;i++){
         packet << world[i%10][i/10];
     }
+    cout << "Client sending world" << endl;
     send(packet);
 }
 

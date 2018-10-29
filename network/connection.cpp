@@ -19,6 +19,8 @@ Connection::Connection(int id, Server* server, TcpSocket* socket){
     this->server = server;
     this->socket = socket;
 
+    running = true;
+
     thread th(&Connection::run, this);
     th.detach();
 
@@ -28,7 +30,13 @@ void Connection::send(Packet packet){
     if(socket->send(packet) != sf::Socket::Done){
         cout << "Server failed to send packet to " << username << endl;
         running = false;
+        server->disconnect(id);
     }
+}
+
+void Connection::stop(){
+    running = false;
+    socket->disconnect();
 }
 
 void Connection::run() {
@@ -38,6 +46,8 @@ void Connection::run() {
 
     if (socket->receive(namePacket) != sf::Socket::Done) {
         cout << "Server couldnt get username from client " << endl;
+        running = false;
+        server->disconnect(id);
         return;
     }
 
@@ -54,6 +64,9 @@ void Connection::run() {
         Packet packet;
         if(socket->receive(packet)!=Socket::Done){
             cout << "Failed to receive pack from client " << endl;
+            running = false;
+            server->disconnect(id);
+            break;
         }
 
         int type;
@@ -75,6 +88,7 @@ void Connection::run() {
             for(int i=0;i<10*20;i++)
                 wPack << world[i];
 
+            cout << "Server got world from " << id << endl;
             server->sendAllExcept(id, wPack);
 
         }else if(type == PACKET_TYPE_PIECE){

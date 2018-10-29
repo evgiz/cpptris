@@ -19,6 +19,7 @@ Connection *connections[4];
 
 bool gameOver[4];
 int gameOverCount = 0;
+bool inGame = false;
 
 int num_connections = 0;
 bool running = true;
@@ -31,7 +32,7 @@ Server::Server() {
 }
 
 string Server::getName(int player) {
-    if (player < num_connections)
+    if (connections[player] != NULL)
         return connections[player]->getName();
     else
         return "";
@@ -43,9 +44,10 @@ void Server::sendLobbyData() {
     pack << (int)PACKET_TYPE_LOBBY;
 
     for (int i = 0; i < 4; i++) {
-        if(i >= num_connections)
+        if(connections[i] == NULL)
             pack << "";
-        else pack << connections[i]->getName();
+        else
+            pack << connections[i]->getName();
     }
 
     Server::sendAll(pack);
@@ -55,46 +57,77 @@ void Server::sendLobbyData() {
 void Server::setGameOver(int id){
 
     gameOver[id] = true;
-    gameOverCount ++;
 
-    if(gameOverCount >= num_connections-1){
+    int gameOverCount = 0;
+    int winner = 0;
 
-        int winner = 0;
-        for(int i=0;i<num_connections;i++){
-            if(!gameOver[i])
-                winner = i;
+    for(int i=0;i<4;i++){
+        if(gameOver[i] || connections[i]==NULL)
+            gameOverCount++;
+        else
+            winner = i;
+    }
+
+    if(gameOverCount >= 3){
+
+        for(int i=0;i<4;i++) {
+            gameOver[id] = false;
         }
 
-        gameOverCount = 0;
-        for(int i=0;i<4;i++)
-            gameOver[id] = false;
+        cout << "Server detected game over, only one player remains alive " << endl;
+
+        inGame = false;
 
         Packet finPack;
         finPack << (int)PACKET_TYPE_FINISHGAME;
         finPack << winner;
         sendAll(finPack);
-    }
+    } else
+        cout << "Game over for " << id << ", " << num_connections-gameOverCount << " players remain" << endl;
 
 }
 
 void Server::startGame(){
+    inGame = true;
+    for(int i=0;i<4;i++)
+        gameOver[i] = false;
     Packet pack;
     pack << (int)PACKET_TYPE_START;
     Server::sendAll(pack);
 }
 
 void Server::sendAll(Packet packet) {
-    for (int i = 0; i < num_connections; i++) {
+    for (int i = 0; i < 4; i++) {
+        if(connections[i] == NULL)
+            continue;
         connections[i]->send(packet);
     }
 }
 
 void Server::sendAllExcept(int id, Packet packet) {
-    for (int i = 0; i < num_connections; i++) {
-        if(id == i)
+    for (int i = 0; i < 4; i++) {
+        if(id == i || connections[i] == NULL)
             continue;
         connections[i]->send(packet);
     }
+}
+
+void Server::disconnect(int id){
+
+    if(connections[id] == NULL)
+        return;
+
+    cout << "Server detected disconnect from " << id << endl;
+
+    delete connections[id];
+    connections[id] = NULL;
+    num_connections--;
+
+    if(inGame){
+        cout << " ...ingame, setting game over " << endl;
+        setGameOver(id);
+    }
+    sendLobbyData();
 }
 
 void Server::run() {
@@ -123,8 +156,13 @@ void Server::run() {
         }
         cout << "Got client" << endl;
 
-        connections[num_connections] = new Connection(num_connections, this, socket);
-        num_connections++;
+        for(int i=0;i<4;i++) {
+            if(connections[i] == NULL) {
+                connections[i] = new Connection(i, this, socket);
+                num_connections++;
+                break;
+            }
+        }
 
     }
 
@@ -134,5 +172,16 @@ void Server::run() {
 
 bool Server::isRunning(){
     return running;
+}
+
+void Server::stop(){
+    running = false;
+    for(int i=0;i<4;i++){
+        if(connections[i] != NULL){
+            connections[i]->stop();
+        }
+    }
+    tcpListener.close();
+    num_connections = 0;
 }
 

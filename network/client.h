@@ -1,6 +1,3 @@
-//
-// Created by Sigve Røkenes on 27/10/2018.
-//
 
 #ifndef CLIENT_H
 #define CLIENT_H
@@ -60,5 +57,5 @@ public:
     int getId();
 };
 
-#endif CLIENT_H
+#endif //CLIENT_H
 

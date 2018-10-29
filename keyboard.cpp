@@ -28,7 +28,11 @@ void KeyboardManager::keyboardUpdate(bool focus){
 }
 
 bool  KeyboardManager::keyDown(Keyboard::Key key){
-    return keyState[key] == KeyboardManager::Down;
+   if(keyState[key] == KeyboardManager::Down){
+       keyState[key] = KeyboardManager::Pressed;
+       return true;
+   }
+   return false;
 }
 
 bool  KeyboardManager::keyPressed(Keyboard::Key key){

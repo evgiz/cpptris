@@ -1,6 +1,3 @@
-//
-// Created by Sigve Røkenes on 27/10/2018.
-//
 
 #ifndef SERVER_H
 #define SERVER_H
@@ -19,6 +16,8 @@ public:
     void startGame();
     void setGameOver(int id);
     bool isRunning();
+    void disconnect(int id);
+    void stop();
 };
 
-#endif SERVER_H
+#endif //SERVER_H

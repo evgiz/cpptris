@@ -76,8 +76,11 @@ public:
         if(gameStarted){
             game->update(delta);
 
-            if(client!=NULL && client->isGameFinished()){
-                gameStarted = false;
+            if(client!=NULL){
+                if(!client->isConnected())
+                    gameStarted = false;
+                if(client->isGameFinished())
+                    gameStarted = false;
             }
 
             return;
@@ -137,7 +140,7 @@ public:
 
         if(state == Host){
             if(typing == Nothing) {
-                if (server->isRunning() && KeyboardManager::keyDown(Keyboard::Key::Space)) {
+                if (server->isRunning() && KeyboardManager::keyDown(Keyboard::Key::Enter)) {
                     server->startGame();
                     game = new Game(client);
                     gameStarted = true;
@@ -146,16 +149,19 @@ public:
 
             if(!server->isRunning()) {
                 typing = Nothing;
-                if (KeyboardManager::keyDown(Keyboard::Key::Escape)) {
-                    state = None;
-                    typeText = "";
-                }
+            }
+
+            if (KeyboardManager::keyDown(Keyboard::Key::Escape)) {
+                state = None;
+                typeText = "";
+                server->stop();
+                delete server;
             }
 
         }
 
         if(state == Join && typing == Nothing ){
-            if(client->isGameStarted()) {
+            if(client->isGameStarted() && client->isConnected()) {
                 game = new Game(client);
                 gameStarted = true;
             }else if(!client->isConnected()){
@@ -174,10 +180,6 @@ public:
         if(typing != Nothing){
             typeText += c;
         }
-    }
-
-    void action(){
-        cout << "Action: " << options[selected] <<endl;
     }
 
     void draw(RenderWindow &window){
@@ -270,7 +272,7 @@ public:
                 lobbyText.setColor(Color(0, 255, 0));
                 lobbyText.setCharacterSize(48);
                 lobbyText.setPosition(70, 1250);
-                lobbyText.setString("Press Space to start");
+                lobbyText.setString("Press Enter to start");
                 window.draw(lobbyText);
             }
 
@@ -293,10 +295,15 @@ public:
                 window.draw(lobbyText);
 
                 lobbyText.setColor(Color(100, 100, 100));
+
+                int index = 0;
                 for (int i = 0; i < 4; i++) {
-                    lobbyText.setPosition(70, 900 + 50 * i);
-                    lobbyText.setString(client->getName(i));
-                    window.draw(lobbyText);
+                    if(client->getName(i).compare("") != 0) {
+                        lobbyText.setPosition(70, 900 + 50 * index);
+                        lobbyText.setString(client->getName(i));
+                        window.draw(lobbyText);
+                        index++;
+                    }
                 }
             } else {
                 lobbyText.setString("Failed to connect");
@@ -326,14 +333,15 @@ public:
         int starty = 52;
         int startx = TILE_SIZE*10 + 100;
 
-        int usr = -1;
-
         lobbyText.setColor(Color(255,255,255));
         lobbyText.setCharacterSize(28);
 
+        int step = 0;
+        int usr = -1;
+
         for(int i=0;i<3;i++){
             int posx = startx + border;
-            int posy = starty + border + i*tile*20 + i*66;
+            int posy = starty + border + step*tile*20 + step*66;
 
             usr++;
             if(client->getId() == usr) {
@@ -342,6 +350,8 @@ public:
 
             if(client->getName(usr).compare("") == 0)
                 continue;
+
+            step++;
 
             RectangleShape outline(Vector2f(tile*10 + border*2, tile*20 + border*2));
             outline.setFillColor(Color(50,50,50));
@@ -357,9 +367,10 @@ public:
                 for(int y=0;y<20;y++){
                     block.setPosition(posx + x*tile, posy + y*tile);
 
-                    if(world[x + y*10]){
+                    if(world[x + y*10]>0){
                         block.setColor(PIECE_COLOR[world[x+y*10]-1]);
-                    }else block.setColor(Color::Black);
+                    }else
+                        block.setColor(Color::Black);
 
                     window.draw(block);
 

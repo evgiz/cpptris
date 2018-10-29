@@ -72,6 +72,7 @@ public:
             }
         }
 
+        cout << "Started new game, using client: " << useClient << endl;
 
         game_reset();
     }
@@ -95,7 +96,6 @@ public:
                 pieceClientUpdateTimer = 0;
                 client->updatePieceState(&currentPiece);
             }
-
         }
 
         if(blockSenderTimer>0){
