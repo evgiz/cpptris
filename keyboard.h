@@ -15,4 +15,4 @@ namespace KeyboardManager {
     bool keyPressed(sf::Keyboard::Key key);
 };
 
-#endif KEYBOARD_H
+#endif //KEYBOARD_H

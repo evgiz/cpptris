@@ -1,13 +1,7 @@
-//
-// Created by Sigve Røkenes on 28/10/2018.
-//
 
 #ifndef PIECE_H
 #define PIECE_H
 
-//
-// Created by Sigve Røkenes on 25/10/2018.
-//
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -107,4 +101,4 @@ public:
 
 };
 
-#endif PIECE_H
+#endif //PIECE_H

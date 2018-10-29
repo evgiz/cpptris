@@ -1,6 +1,3 @@
-//
-// Created by Sigve Røkenes on 26/10/2018.
-//
 
 #include <iostream>
 #include <thread>

@@ -1,6 +1,3 @@
-//
-// Created by Sigve Røkenes on 28/10/2018.
-//
 
 #include "keyboard.h"
 #include <SFML/Window.hpp>

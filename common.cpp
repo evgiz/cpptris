@@ -1,7 +1,3 @@
-//
-// Created by Sigve Røkenes on 25/10/2018.
-//
-
 
 #define TILE_SIZE 80
 

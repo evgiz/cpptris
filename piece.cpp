@@ -1,6 +1,3 @@
-//
-// Created by Sigve Røkenes on 25/10/2018.
-//
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
