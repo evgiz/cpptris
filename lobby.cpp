@@ -46,12 +46,11 @@ private:
     string typeText = "";
     string address = "127.0.0.1";
 
-    string options[4] =
+    string options[3] =
             {
             "Singleplayer",
             "Join game",
-            "Host game",
-            "Quit"
+            "Host game"
             };
 
     int selected = 0;
@@ -86,7 +85,7 @@ public:
         if(state == None) {
             if ( KeyboardManager::keyDown(Keyboard::Key::Down)) {
                     selected++;
-                    if (selected > 3)selected = 3;
+                    if (selected > 2)selected = 2;
             }
 
             if ( KeyboardManager::keyDown(Keyboard::Key::Up)) {
@@ -207,7 +206,7 @@ public:
 
         if(state == None) {
             lobbyText.setCharacterSize(48);
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 3; i++) {
                 lobbyText.setString(options[i]);
                 lobbyText.setPosition(90 + (i == selected ? 45 : 0), 700 + 60 * i);
                 window.draw(lobbyText);
