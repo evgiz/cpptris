@@ -70,16 +70,13 @@ void Server::setGameOver(int id){
             gameOver[id] = false;
         }
 
-        cout << "Server detected game over, only one player remains alive " << endl;
-
         inGame = false;
 
         Packet finPack;
         finPack << (int)PACKET_TYPE_FINISHGAME;
         finPack << winner;
         sendAll(finPack);
-    } else
-        cout << "Game over for " << id << ", " << num_connections-gameOverCount << " players remain" << endl;
+    }
 
 }
 
@@ -113,14 +110,13 @@ void Server::disconnect(int id){
     if(connections[id] == NULL)
         return;
 
-    cout << "Server detected disconnect from " << id << endl;
+    cout << "Client with id " << id << " disconnected." << endl;
 
     delete connections[id];
     connections[id] = NULL;
     num_connections--;
 
     if(inGame){
-        cout << " ...ingame, setting game over " << endl;
         setGameOver(id);
     }
     sendLobbyData();
@@ -131,11 +127,11 @@ void Server::run() {
     running = true;
 
     if (tcpListener.listen((unsigned short) 31621) != Socket::Done) {
-        cout << "Failed to start network." << endl;
+        cout << "Failed to start server." << endl;
         running = false;
         return;
     }
-    cout << "Server listening on port 424842" << endl;
+    cout << "Server listening on port 31621" << endl;
 
     while (running) {
 
@@ -150,7 +146,8 @@ void Server::run() {
             cout << "Accepting client failed." << endl;
             continue;
         }
-        cout << "Got client" << endl;
+
+        cout << "Client connected!" << endl;
 
         for(int i=0;i<4;i++) {
             if(connections[i] == NULL) {
@@ -161,8 +158,6 @@ void Server::run() {
         }
 
     }
-
-    cout << "Server got 4 clients! Stopping!" << endl;
 
 }
 

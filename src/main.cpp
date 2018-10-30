@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
 
-    RenderWindow window(VideoMode(1200, 1700), "Tetris");
+    RenderWindow window(VideoMode(1200, 1700), "Cpptris");
     Lobby lobby;
 
     Clock clock;

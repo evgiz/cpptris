@@ -86,7 +86,6 @@ void Connection::run() {
             for(int i=0;i<10*20;i++)
                 wPack << world[i];
 
-            cout << "Server got world from " << id << endl;
             server->sendAllExcept(id, wPack);
 
         }else if(type == PACKET_TYPE_PIECE){
